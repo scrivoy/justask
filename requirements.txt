@@ -3,7 +3,7 @@ Flask-SQLAlchemy==3.1.1
 Flask-Migrate==4.1.0
 Werkzeug==3.1.7
 python-dotenv==1.0.0
-qrcode==7.4.2
+qrcode==8.2
 Pillow==12.1.1
 gunicorn==25.3.0
 bcrypt==5.0.0
