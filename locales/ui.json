@@ -1,0 +1,464 @@
+{
+  "site_name": {
+    "de": "justask",
+    "en": "justask"
+  },
+  "submit": {
+    "de": "Absenden",
+    "en": "Submit"
+  },
+  "thank_you": {
+    "de": "Vielen Dank für Ihr Feedback!",
+    "en": "Thank you for your feedback!"
+  },
+  "thank_you_detail": {
+    "de": "Ihre Bewertung wurde erfolgreich übermittelt.",
+    "en": "Your feedback has been submitted successfully."
+  },
+  "project_number": {
+    "de": "Projektnummer",
+    "en": "Project Number"
+  },
+  "project_title": {
+    "de": "Projekttitel",
+    "en": "Project Title"
+  },
+  "project_leader": {
+    "de": "Projektleiter",
+    "en": "Project Leader"
+  },
+  "date": {
+    "de": "Datum",
+    "en": "Date"
+  },
+  "generate_link": {
+    "de": "Link generieren",
+    "en": "Generate Link"
+  },
+  "cancel": {
+    "de": "Abbrechen",
+    "en": "Cancel"
+  },
+  "copy_link": {
+    "de": "Link kopieren",
+    "en": "Copy Link"
+  },
+  "generated_link": {
+    "de": "Generierter Link",
+    "en": "Generated Link"
+  },
+  "existing_link_notice": {
+    "de": "Es existiert bereits ein Link für dieses Projekt. Der vorhandene Link wurde geladen.",
+    "en": "A link already exists for this project. The existing link has been loaded."
+  },
+  "existing_leader_info": {
+    "de": "Projektleiter aus bestehendem Projekt",
+    "en": "Project leader from existing project"
+  },
+  "generate_new_link": {
+    "de": "Neuen Link generieren",
+    "en": "Generate New Link"
+  },
+  "link_expires": {
+    "de": "Link läuft ab am:",
+    "en": "Link expires on:"
+  },
+  "error_expired": {
+    "de": "Dieser Link ist bereits abgelaufen.",
+    "en": "This link has expired."
+  },
+  "error_used": {
+    "de": "Dieser Feedback-Link wurde bereits verwendet.",
+    "en": "This feedback link has already been used."
+  },
+  "error_invalid": {
+    "de": "Dieser Link existiert nicht in unserem System.",
+    "en": "This link does not exist in our system."
+  },
+  "error_bad_request": {
+    "de": "Ungültige Anfrage.",
+    "en": "Bad request."
+  },
+  "error_forbidden": {
+    "de": "Zugriff verweigert. Nur aus dem internen Netzwerk verfügbar.",
+    "en": "Access denied. Only available from internal network."
+  },
+  "error_not_found": {
+    "de": "Seite nicht gefunden.",
+    "en": "Page not found."
+  },
+  "error_server": {
+    "de": "Serverfehler. Bitte versuchen Sie es später erneut.",
+    "en": "Server error. Please try again later."
+  },
+  "error_rate_limit": {
+    "de": "Zu viele Versuche. Bitte später erneut versuchen.",
+    "en": "Too many attempts. Please try again later."
+  },
+  "error_contact": {
+    "de": "Bei Fragen: Kontaktieren Sie bitte Ihren Ansprechpartner.",
+    "en": "If you have questions, please contact your project leader."
+  },
+  "error_project_number_format": {
+    "de": "Format: 123/45",
+    "en": "Format: 123/45"
+  },
+  "project_number_hint": {
+    "de": "Format: 3 Ziffern / 2 Ziffern (z.B. 123/25 für Projekt 123 im Jahr 2025)",
+    "en": "Format: 3 digits / 2 digits (e.g. 123/25 for project 123 in year 2025)"
+  },
+  "error_project_number_exists": {
+    "de": "Projektnummer bereits vorhanden",
+    "en": "Project number already exists"
+  },
+  "error_project_already_rated": {
+    "de": "Dieses Projekt wurde bereits bewertet. Es kann kein neuer Link generiert werden.",
+    "en": "This project has already been rated. No new link can be generated."
+  },
+  "error_required": {
+    "de": "Pflichtfeld",
+    "en": "Required field"
+  },
+  "error_max_length": {
+    "de": "Max. {max} Zeichen",
+    "en": "Max. {max} characters"
+  },
+  "error_future_date": {
+    "de": "Datum darf nicht in Zukunft liegen",
+    "en": "Date cannot be in the future"
+  },
+  "please_select": {
+    "de": "Bitte auswählen",
+    "en": "Please select"
+  },
+  "all": {
+    "de": "Alle",
+    "en": "All"
+  },
+  "last_month": {
+    "de": "Letzter Monat",
+    "en": "Last Month"
+  },
+  "last_quarter": {
+    "de": "Letztes Quartal",
+    "en": "Last Quarter"
+  },
+  "last_year": {
+    "de": "Letztes Jahr",
+    "en": "Last Year"
+  },
+  "export_csv": {
+    "de": "CSV-Export",
+    "en": "CSV Export"
+  },
+  "total_rating": {
+    "de": "Gesamtbewertung",
+    "en": "Total Rating"
+  },
+  "total_responses": {
+    "de": "Antworten gesamt",
+    "en": "Total Responses"
+  },
+  "rating_scale": {
+    "de": "Bewertung",
+    "en": "Rating"
+  },
+  "responses": {
+    "de": "Antworten",
+    "en": "Responses"
+  },
+  "links": {
+    "de": "Links",
+    "en": "Links"
+  },
+  "status": {
+    "de": "Status",
+    "en": "Status"
+  },
+  "status_open": {
+    "de": "Offen",
+    "en": "Open"
+  },
+  "status_completed": {
+    "de": "Ausgefüllt",
+    "en": "Completed"
+  },
+  "status_used": {
+    "de": "Verbraucht",
+    "en": "Used"
+  },
+  "status_expired": {
+    "de": "Abgelaufen",
+    "en": "Expired"
+  },
+  "status_closed": {
+    "de": "Abgeschlossen",
+    "en": "Closed"
+  },
+  "admin_login": {
+    "de": "Admin-Login",
+    "en": "Admin Login"
+  },
+  "login": {
+    "de": "Anmelden",
+    "en": "Login"
+  },
+  "password": {
+    "de": "Passwort",
+    "en": "Password"
+  },
+  "logout": {
+    "de": "Abmelden",
+    "en": "Logout"
+  },
+  "edit": {
+    "de": "Bearbeiten",
+    "en": "Edit"
+  },
+  "delete": {
+    "de": "Löschen",
+    "en": "Delete"
+  },
+  "save": {
+    "de": "Speichern",
+    "en": "Save"
+  },
+  "saved": {
+    "de": "Gespeichert",
+    "en": "Saved"
+  },
+  "error_leaders_have_projects": {
+    "de": "Projektleiter mit Projekten können nicht gelöscht werden: {names}",
+    "en": "Project leaders with projects cannot be deleted: {names}"
+  },
+  "new_leader": {
+    "de": "Neuer Projektleiter",
+    "en": "New Project Leader"
+  },
+  "leaders_list": {
+    "de": "Projektleiter",
+    "en": "Project Leaders"
+  },
+  "leaders_placeholder": {
+    "de": "Max Mustermann\nErika Musterfrau\n...",
+    "en": "John Doe\nJane Smith\n..."
+  },
+  "leaders_hint": {
+    "de": "Ein Name pro Zeile",
+    "en": "One name per line"
+  },
+  "name": {
+    "de": "Name",
+    "en": "Name"
+  },
+  "created_on": {
+    "de": "Erstellt am",
+    "en": "Created on"
+  },
+  "actions": {
+    "de": "Aktionen",
+    "en": "Actions"
+  },
+  "confirm_delete": {
+    "de": "Möchten Sie diesen Eintrag wirklich löschen?",
+    "en": "Do you really want to delete this entry?"
+  },
+  "confirm_delete_link": {
+    "de": "Link wirklich löschen?",
+    "en": "Delete this link?"
+  },
+  "link_deleted": {
+    "de": "Link gelöscht",
+    "en": "Link deleted"
+  },
+  "error_delete_projects": {
+    "de": "Projektleiter kann nicht gelöscht werden ({count} Projekte zugeordnet)",
+    "en": "Cannot delete project leader ({count} projects assigned)"
+  },
+  "back": {
+    "de": "Zurück",
+    "en": "Back"
+  },
+  "dashboard": {
+    "de": "Dashboard",
+    "en": "Dashboard"
+  },
+  "create_questionnaire": {
+    "de": "Neuer Fragebogen",
+    "en": "New Questionnaire"
+  },
+  "admin_dashboard": {
+    "de": "Admin-Übersicht",
+    "en": "Admin Dashboard"
+  },
+  "manage_leaders": {
+    "de": "Projektleiter verwalten",
+    "en": "Manage Project Leaders"
+  },
+  "feedback_form": {
+    "de": "Feedback-Formular",
+    "en": "Feedback Form"
+  },
+  "project_details": {
+    "de": "Projekt-Details",
+    "en": "Project Details"
+  },
+  "language": {
+    "de": "Sprache",
+    "en": "Language"
+  },
+  "german": {
+    "de": "Deutsch",
+    "en": "German"
+  },
+  "english": {
+    "de": "Englisch",
+    "en": "English"
+  },
+  "qr_code": {
+    "de": "QR-Code",
+    "en": "QR Code"
+  },
+  "link_copied": {
+    "de": "Link in Zwischenablage kopiert!",
+    "en": "Link copied to clipboard!"
+  },
+  "select_leader": {
+    "de": "Bitte Projektleiter auswählen",
+    "en": "Please select a project leader"
+  },
+  "rating_1": { "de": "--", "en": "--" },
+  "rating_2": { "de": "-", "en": "-" },
+  "rating_3": { "de": "0", "en": "0" },
+  "rating_4": { "de": "+", "en": "+" },
+  "rating_5": { "de": "++", "en": "++" },
+  "filter": {
+    "de": "Filter",
+    "en": "Filter"
+  },
+  "reset_filter": {
+    "de": "Filter zurücksetzen",
+    "en": "Reset Filter"
+  },
+  "response_rate": {
+    "de": "Antwortrate Offene Links",
+    "en": "Response Rate Open Links"
+  },
+  "detailed_evaluation": {
+    "de": "Detaillierte Auswertung",
+    "en": "Detailed Evaluation"
+  },
+  "all_projects": {
+    "de": "Alle Projekte",
+    "en": "All Projects"
+  },
+  "status_expired_link": {
+    "de": "Link abgelaufen",
+    "en": "Link expired"
+  },
+  "no_projects": {
+    "de": "Keine Einträge gefunden",
+    "en": "No entries found"
+  },
+  "showing_latest": {
+    "de": "Zeigt die letzten {count} Einträge. Für alle: CSV-Export nutzen.",
+    "en": "Showing latest {count} entries. For all: use CSV export."
+  },
+  "other_leader": {
+    "de": "Anderer...",
+    "en": "Other..."
+  },
+  "project_info_title": {
+    "de": "Projekt-Informationen",
+    "en": "Project Information"
+  },
+  "scale_definition": {
+    "de": "Skalendefinition: -- = trifft überhaupt nicht zu | - = trifft eher nicht zu | 0 = teils/teils | + = trifft zu | ++ = trifft voll zu",
+    "en": "Scale definition: -- = does not apply at all | - = rather does not apply | 0 = partly/partly | + = applies | ++ = fully applies"
+  },
+  "rating_label_1": { "de": "trifft überhaupt nicht zu", "en": "does not apply at all" },
+  "rating_label_2": { "de": "trifft eher nicht zu", "en": "rather does not apply" },
+  "rating_label_3": { "de": "teils/teils", "en": "partly/partly" },
+  "rating_label_4": { "de": "trifft zu", "en": "applies" },
+  "rating_label_5": { "de": "trifft voll zu", "en": "fully applies" },
+  "project_name": {
+    "de": "Projektname",
+    "en": "Project Name"
+  },
+  "offer_number": {
+    "de": "Angebotsnummer",
+    "en": "Offer Number"
+  },
+  "offer_title": {
+    "de": "Angebotstitel",
+    "en": "Offer Title"
+  },
+  "offer_number_hint": {
+    "de": "Format: 3 Ziffern / 2 Ziffern (z.B. 123/25)",
+    "en": "Format: 3 digits / 2 digits (e.g. 123/25)"
+  },
+  "error_offer_number_format": {
+    "de": "Format: 123/45",
+    "en": "Format: 123/45"
+  },
+  "error_offer_number_exists": {
+    "de": "Angebotsnummer bereits vorhanden",
+    "en": "Offer number already exists"
+  },
+  "offer_number_existing_hint": {
+    "de": "Angebotsnummer existiert bereits? Es wird ein neuer Fragebogen-Link hinzugefügt.",
+    "en": "Offer number already exists? A new questionnaire link will be added."
+  },
+  "comment": {
+    "de": "Kommentar (optional)",
+    "en": "Comment (optional)"
+  },
+  "comment_placeholder": {
+    "de": "Möchten Sie uns noch etwas mitteilen?",
+    "en": "Would you like to tell us anything else?"
+  },
+  "staff_login": {
+    "de": "Mitarbeiter-Login",
+    "en": "Staff Login"
+  },
+  "chart_title": {
+    "de": "Bewertungsverlauf",
+    "en": "Rating Trend"
+  },
+  "latest_surveys": {
+    "de": "Letzte Umfragen",
+    "en": "Latest Surveys"
+  },
+  "error_invalid_password": {
+    "de": "Passwort falsch",
+    "en": "Invalid password"
+  },
+  "error_no_leader": {
+    "de": "Bitte zuerst Projektleiter im Admin-Bereich anlegen.",
+    "en": "Please create project leaders in the admin area first."
+  },
+  "error_delete_completed": {
+    "de": "Abgeschlossene Umfragen können nicht gelöscht werden.",
+    "en": "Completed surveys cannot be deleted."
+  },
+  "open_links": {
+    "de": "Offene Links",
+    "en": "Open Links"
+  },
+  "delete_all_open": {
+    "de": "Alle offenen Links löschen",
+    "en": "Delete all open links"
+  },
+  "confirm_delete_all_open": {
+    "de": "Wirklich alle offenen Links löschen?",
+    "en": "Delete all open links?"
+  },
+  "all_open_deleted": {
+    "de": "Alle offenen Links gelöscht",
+    "en": "All open links deleted"
+  },
+  "copied": {
+    "de": "Kopiert!",
+    "en": "Copied!"
+  }
+}

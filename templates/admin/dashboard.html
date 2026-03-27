@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+{% block title %}{{ t('admin_dashboard') }} - {{ t('site_name') }}{% endblock %}
+
+{% block extra_head %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="admin-dashboard">
+    <span class="section-title">{{ t('admin_dashboard') }}</span>
+
+    <!-- Chart: monthly averages -->
+    <div class="card">
+        <h3>{{ t('chart_title') }}</h3>
+        <div class="chart-container">
+            <canvas id="ratingChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Table: last 10 completed forms -->
+    <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h3 style="margin: 0;">{{ t('latest_surveys') }}</h3>
+            <a href="{{ url_for('admin.export_csv') }}" class="btn">{{ t('export_csv') }}</a>
+        </div>
+
+        {% if table_rows %}
+        <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">{{ t('showing_latest').replace('{count}', '10') }}</p>
+        <div style="overflow-x: auto;">
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>{{ t('offer_number') }}</th>
+                    <th>{{ t('offer_title') }}</th>
+                    <th>{{ t('project_number') }}</th>
+                    <th>{{ t('project_leader') }}</th>
+                    <th>{{ t('date') }}</th>
+                    <th>{{ t('status') }}</th>
+                    <th>{{ t('rating_scale') }}</th>
+                    <th>{{ t('comment') }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in table_rows %}
+                <tr>
+                    <td><strong>{{ row.offer_number }}</strong></td>
+                    <td>{{ row.offer_title }}</td>
+                    <td>{{ row.project_number or '-' }}</td>
+                    <td>{{ row.leader_name }}</td>
+                    <td>{{ row.date.strftime('%d.%m.%Y') if row.date else '-' }}</td>
+                    <td>
+                        <span style="color: green;">{{ t('status_completed') }}</span>
+                        <br><small>{{ row.completed_at.strftime('%d.%m.%Y') if row.completed_at }}</small>
+                    </td>
+                    <td><strong>{{ row.avg_rating if row.avg_rating else '-' }}</strong></td>
+                    <td>{{ row.comment[:80] ~ '...' if row.comment and row.comment|length > 80 else row.comment or '-' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+        {% else %}
+        <p style="text-align: center; color: #666; margin: 2rem 0;">{{ t('no_projects') }}</p>
+        {% endif %}
+    </div>
+
+    <!-- Open links -->
+    <div class="card">
+        <h3 style="margin-bottom: 1rem;">{{ t('open_links') }}</h3>
+        {% if open_links %}
+        <div style="overflow-x: auto;">
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>{{ t('offer_number') }}</th>
+                    <th>{{ t('offer_title') }}</th>
+                    <th>{{ t('project_number') }}</th>
+                    <th>{{ t('project_leader') }}</th>
+                    <th>{{ t('created_on') }}</th>
+                    <th>Link</th>
+                    <th>{{ t('actions') }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in open_links %}
+                <tr>
+                    <td><strong>{{ row.offer_number }}</strong></td>
+                    <td>{{ row.title }}</td>
+                    <td>{{ row.project_number or '-' }}</td>
+                    <td>{{ row.leader_name }}</td>
+                    <td>{{ row.created_at.strftime('%d.%m.%Y') }}</td>
+                    <td><a href="{{ row.link }}" target="_blank" style="word-break: break-all; font-size: 0.85rem;">{{ row.link }}</a></td>
+                    <td>
+                        <form method="POST" action="{{ url_for('admin.delete_form', id=row.id) }}" style="display: inline;" onsubmit="return confirm('{{ t('confirm_delete_link') }}');">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <button type="submit" class="btn" style="background: #dc3545; padding: 0.3rem 0.6rem; font-size: 0.8rem;">{{ t('delete') }}</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+        <div style="margin-top: 1rem;">
+            <form method="POST" action="{{ url_for('admin.delete_all_open') }}" style="display: inline;" onsubmit="return confirm('{{ t('confirm_delete_all_open') }}');">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <button type="submit" class="btn" style="background: #dc3545;">{{ t('delete_all_open') }}</button>
+            </form>
+        </div>
+        {% else %}
+        <p style="text-align: center; color: #666; margin: 2rem 0;">{{ t('no_projects') }}</p>
+        {% endif %}
+    </div>
+
+    <!-- Leaders management -->
+    <div class="card">
+        <h3 style="margin-bottom: 1rem;">{{ t('leaders_list') }}</h3>
+        <form method="POST" action="{{ url_for('admin.save_leaders') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <div class="form-group">
+                <textarea name="leaders" class="form-input" rows="6" placeholder="{{ t('leaders_placeholder') }}" style="font-family: monospace;">{{ leader_names }}</textarea>
+                <div class="form-hint">{{ t('leaders_hint') }}</div>
+            </div>
+            <button type="submit" class="btn">{{ t('save') }}</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+var ctx = document.getElementById('ratingChart');
+if (ctx) {
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: {{ chart_labels|safe }},
+            datasets: [{
+                label: '{{ t("total_rating") }}',
+                data: {{ chart_data|safe }},
+                borderColor: getComputedStyle(document.documentElement).getPropertyValue('--primary').trim() || '#354660',
+                backgroundColor: 'rgba(53, 70, 96, 0.1)',
+                tension: 0.3,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    min: 1,
+                    max: 5,
+                    ticks: { stepSize: 1 }
+                }
+            },
+            plugins: {
+                legend: { display: false }
+            }
+        }
+    });
+}
+</script>
+{% endblock %}

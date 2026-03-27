@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}{{ t('feedback_form') }} - {{ t('site_name') }}{% endblock %}
+{% block nav %}{% endblock %}
+{% block lang_switcher %}
+<a href="{{ url_for('customer.set_language', token=token, lang='de') }}" class="{{ 'active' if lang == 'de' }}">DE</a>
+<a href="{{ url_for('customer.set_language', token=token, lang='en') }}" class="{{ 'active' if lang == 'en' }}">EN</a>
+{% endblock %}
+
+{% block content %}
+{% if error %}
+<div class="card" style="background: #fff3cd; border-left: 4px solid var(--secondary);">
+    <h3 style="color: #856404;">{{ error_title }}</h3>
+    {% if error_contact %}
+    <p style="color: #856404; margin-top: 0.5rem;">{{ t('error_contact') }}</p>
+    {% endif %}
+</div>
+{% else %}
+<div class="project-info">
+    <h3>{{ t('project_info_title') }}</h3>
+    <div class="project-info-row">
+        <div class="project-info-item">
+            <div class="project-info-label">{{ t('offer_number') }}</div>
+            <div class="project-info-value">{{ offer.offer_number }}</div>
+        </div>
+        <div class="project-info-item">
+            <div class="project-info-label">{{ t('offer_title') }}</div>
+            <div class="project-info-value">{{ offer.title }}</div>
+        </div>
+        {% if offer.project_number %}
+        <div class="project-info-item">
+            <div class="project-info-label">{{ t('project_number') }}</div>
+            <div class="project-info-value">{{ offer.project_number }}</div>
+        </div>
+        {% endif %}
+        <div class="project-info-item">
+            <div class="project-info-label">{{ t('project_leader') }}</div>
+            <div class="project-info-value">{{ offer.leader_name }}</div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <h2 class="card-title">{{ t('feedback_form') }}</h2>
+    <div class="scale-legend">
+        <div class="scale-row"><span class="scale-symbol">--</span> <span class="scale-text">{{ t('rating_label_1') }}</span></div>
+        <div class="scale-row"><span class="scale-symbol">-</span> <span class="scale-text">{{ t('rating_label_2') }}</span></div>
+        <div class="scale-row"><span class="scale-symbol">0</span> <span class="scale-text">{{ t('rating_label_3') }}</span></div>
+        <div class="scale-row"><span class="scale-symbol">+</span> <span class="scale-text">{{ t('rating_label_4') }}</span></div>
+        <div class="scale-row"><span class="scale-symbol">++</span> <span class="scale-text">{{ t('rating_label_5') }}</span></div>
+    </div>
+
+    <form method="POST" action="{{ url_for('customer.submit', token=token) }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        {% for question in questions %}
+        <div class="question-block">
+            <div class="question-text">{{ loop.index }}. {{ question.text }}</div>
+            <div class="rating-scale">
+                {% for val in [1, 2, 3, 4, 5] %}
+                <label class="rating-option">
+                    <input type="radio" name="question_{{ question.id }}" value="{{ val }}" required>
+                    <span class="rating-btn">{{ t('rating_' ~ val) }}</span>
+                </label>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+
+        <div class="form-group" style="margin-top: 2rem;">
+            <label class="form-label" for="comment">{{ t('comment') }}</label>
+            <textarea class="form-input comment-field" id="comment" name="comment" rows="4" maxlength="2000" placeholder="{{ t('comment_placeholder') }}"></textarea>
+        </div>
+
+        <div style="text-align: center;">
+            <button type="submit" class="btn" style="padding: 1rem 3rem;">{{ t('submit') }}</button>
+        </div>
+    </form>
+</div>
+{% endif %}
+{% endblock %}

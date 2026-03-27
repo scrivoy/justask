@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}{{ t('dashboard') }} - {{ t('site_name') }}{% endblock %}
+
+{% block extra_head %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <span class="section-title">{{ t('dashboard') }}</span>
+
+    <div class="dashboard-grid">
+        <div class="stat-card">
+            <div class="stat-title">{{ t('total_rating') }}</div>
+            <div class="stat-value">{{ "%.1f"|format(total_rating) if total_rating else '-' }} / 5</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-title">{{ t('total_responses') }}</div>
+            <div class="stat-value">{{ total_responses }}</div>
+        </div>
+    </div>
+
+    <div class="questions-overview">
+        <h2>{{ t('rating_scale') }}</h2>
+        {% for question in questions %}
+        <div class="progress-item">
+            <div class="question-stats">
+                <span>{{ question.text }}</span>
+                <span><strong>{{ "%.1f"|format(question.avg) if question.avg else '-' }} / 5</strong></span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: {{ ((question.avg - 1) / 4 * 100) if question.avg else 0 }}%"></div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Monthly averages chart -->
+    <div class="card">
+        <h3>{{ t('chart_title') }}</h3>
+        <div class="chart-container">
+            <canvas id="ratingChart"></canvas>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+var ctx = document.getElementById('ratingChart');
+if (ctx) {
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: {{ chart_labels|safe }},
+            datasets: [{
+                label: '{{ t("total_rating") }}',
+                data: {{ chart_data|safe }},
+                borderColor: getComputedStyle(document.documentElement).getPropertyValue('--primary').trim() || '#354660',
+                backgroundColor: 'rgba(53, 70, 96, 0.1)',
+                tension: 0.3,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    min: 1,
+                    max: 5,
+                    ticks: { stepSize: 1 }
+                }
+            },
+            plugins: {
+                legend: { display: false }
+            }
+        }
+    });
+}
+</script>
+{% endblock %}

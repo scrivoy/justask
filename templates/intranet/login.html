@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block nav %}{% endblock %}
+{% block title %}{{ t('login') }} - {{ t('site_name') }}{% endblock %}
+{% block content %}
+<div class="login-page">
+    <div class="login-box">
+        <h1>{{ t('login') }}</h1>
+        {% if error %}
+        <div class="flash-message flash-error">{{ error }}</div>
+        {% endif %}
+        <form method="POST" action="{{ url_for('intranet.login') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <div class="form-group">
+                <label class="form-label" for="password">{{ t('password') }}</label>
+                <input type="password" class="form-input" id="password" name="password" required autofocus>
+            </div>
+            <button type="submit" class="btn" style="width: 100%;">{{ t('login') }}</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

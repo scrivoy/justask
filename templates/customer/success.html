@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}{{ t('thank_you') }} - {{ t('site_name') }}{% endblock %}
+{% block nav %}{% endblock %}
+{% block lang_switcher %}{% endblock %}
+{% block content %}
+<div class="card">
+    <div class="success-message">
+        <div class="success-icon">✓</div>
+        <h2>{{ t('thank_you') }}</h2>
+        <p style="margin-top: 1rem;">{{ t('thank_you_detail') }}</p>
+    </div>
+</div>
+{% endblock %}
